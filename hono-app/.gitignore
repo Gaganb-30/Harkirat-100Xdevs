@@ -11,6 +11,8 @@ dist/
 .idea/usage.statistics.xml
 .idea/shelf
 
+wrangler.jsonc
+
 # deps
 node_modules/
 .wrangler
