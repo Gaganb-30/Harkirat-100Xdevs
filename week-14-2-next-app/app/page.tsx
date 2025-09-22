@@ -1,9 +1,12 @@
-import axios from "axios";
+import client from "@/db";
 
-async function getUserDetails(){
-  await new Promise((r) => setTimeout(r, 5000));
-  const res = await axios.get("http://localhost:3000/api/user");
-  return res.data;
+async function getUserDetails() {
+  const user = await client.user.findFirst();
+  // console.log("hi");
+  return {
+    username: user?.username,
+    name: "Gagan Bisht",
+  };
 }
 
 export default async function Home() {
@@ -12,10 +15,8 @@ export default async function Home() {
     <div className="flex flex-col justify-center h-screen">
       <div className="flex justify-center">
         <div className="border p-8 rounded">
-          <div>
-            Name : {userDetails?.name}
-          </div>
-          {userDetails?.email}
+          <div>Name : {userDetails?.name}</div>
+          {userDetails?.username}
         </div>
       </div>
     </div>
