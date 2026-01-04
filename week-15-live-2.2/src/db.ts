@@ -1,6 +1,7 @@
 import mongoose, { Schema, model } from 'mongoose';
 
-const mongoUrl: string = 'mongodb://mongoGaganNetwork:27017/myDatabase';
+const mongoUrl: string = process.env.MONGO_URL || "";
+//'mongodb://mongodb12:27017/myDatabase';
 
 // Connect to MongoDB
 mongoose.connect(mongoUrl)

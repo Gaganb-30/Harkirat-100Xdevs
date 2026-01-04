@@ -1,0 +1,21 @@
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb12
+    ports:
+      - "27017:27017"
+    volumes:
+      - volume_database2:/data/db
+
+  backend:
+    image: backend
+    container_name: backendApp
+    depends_on:
+      - mongodb
+    ports:
+      - "3000:3000"
+    environment:
+      MONGO_URL: "mongodb://mongodb12:27017"
+
+volumes:
+  volume_database2:
