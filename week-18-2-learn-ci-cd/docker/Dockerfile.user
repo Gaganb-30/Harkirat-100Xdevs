@@ -1,0 +1,19 @@
+FROM node:20-alpine
+
+WORKDIR /user/src/app
+
+COPY package.json package-lock.json turbo.json tsconfig.json ./
+
+COPY apps ./apps
+COPY packages ./packages
+
+RUN npm install
+
+ARG DATABASE_URL
+ENV DATABASE_URL=$DATABASE_URL
+
+RUN npm run db:generate
+
+RUN npm run build
+
+CMD ["npm", "run", "start-user-app"]
